@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinSeries.Views.SeriesView"
+             xmlns:local="clr-namespace:XamarinSeries"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator}
+                , Path=SeriesViewModel}"
+             x:Name="SeriesViewPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Series Api" FontSize="Large"/>
+            <ListView ItemsSource="{Binding Series}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding NombreSerie}" TextColor="Blue"
+                                   FontSize="Large"/>
+                                <Button HorizontalOptions="End"
+                                        Text="Details"
+                                        CommandParameter="{Binding .}"
+                                        Command="{Binding BindingContext.ShowSerieDetails
+                                    , Source={x:Reference SeriesViewPage}}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
